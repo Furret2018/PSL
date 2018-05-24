@@ -1,0 +1,132 @@
+
+17章  并发执行
+
+本章讲解代码的并发执行。根据任务（CPU消耗情况 vs IO消耗情况）选择合同的工具 及喜欢的开发风格（事件驱动协同多任务 vs 先发制人多任务）
+
+
+第1部分 threading -- Thread-based parallelism
+
+1.1 Thread-Local Data 
+1.2 线程对象
+1.3 锁对象
+1.4 RLock
+1.5 条件对象
+1.6 Semaphore Objects
+1.7 事件对象
+1.8 Timer对象
+1.9 Barrier Objects 
+1.10 在with语句中使用锁，条件和旗语
+
+
+第2部分 multiprocessing — Process-based parallelism
+2.1 介绍
+
+Process类
+上下文和start方法
+进程间交换对象
+进程间同步
+进程间共享态
+使用workers池
+
+
+2.2 参考 
+进程和异常
+管道和队列
+杂项
+联结对象
+同步原语
+共享的ctypes对象
+
+管理者
+
+代理队象
+进程池
+
+监听者和客户端
+	地址格式
+授权码
+
+日志记录
+multiprocessing.dummy模块
+
+
+编程准则 
+所有的start方法
+spawn和forkserver 开始方法
+例子
+
+第三部分 concurrent包
+
+第四部分 concurrent.futures -- 加载并行任务
+Excutor对象
+ThreadPoolExecutor
+ProcessPoolExecutor
+Future对象
+模块函数
+
+异常类
+
+第五部分 subprocess -- 子进程管理
+使用subprocess模块
+	常用参数
+	popen构造器
+	异常
+安全考虑
+Popen对象
+windows Popen帮助
+	常量
+
+旧的高层API
+使用subprocess模块代替旧的函数
+
+	替换 /bin/sh 反引号
+	替换shell pipeline
+	替换os.system()
+	替换os.spawn
+	替换os.popen(), os.popen2(), os.popen3()
+	从popen2模块替换函数
+
+
+旧的 shell 调用方法
+
+附注
+
+第6部分 事件调度器
+	调度器对象
+
+第7部分 queue -- 同步的队列类
+	queue对象
+
+第8部分 dummy_threading  threading模块的替代物
+第9部分 _thread -- 底层threading API
+第10部分 _dummy_thread _thread模块的替代物
+
+
+--------------------------------------------------------
+
+echo "# PSL" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/Furret2018/PSL.git
+git push -u origin master
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

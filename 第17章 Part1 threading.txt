@@ -1,0 +1,72 @@
+第1部分 threading -- Thread-based parallelism
+
+
+源码位于： Lib/theading.py
+
+本模块是对底层模块_thread的封装。 也可参考queue模块
+dummy_threading模块用于提供给threading无法使用的情况下，因为_thread已经不在了。
+
+注： 略
+
+本模块定义了如下函数 （全局API函数）：
+active_count() 
+返回现在存活的Thread对象的个数。 返回的数量等价于enumerate()返回的列表的长度
+
+current_thread()
+返回当前的thread对象，对应于调用者控制的thread对象。如果调用者的控制的线程不是通过threading模块创建的，那么返回一个带有限定功能的dummy线程对象
+
+
+get_ident()
+返回当前线程的“线程标识符”。 它是一个非0整数。 这个值没有直接的意义。它是打算作为一个魔法cookie用于，例如索引一个线程特定数据的字典。 线程标识符可能是循环利用的，当一个线程退出而另一个线程被创建时。
+
+main_thread()
+返回主线程对象。在正常条件下，主线程是来自Python解释器开始的线程。
+
+
+settrace(func)
+对于所有开始自threading模块的线程设置追踪功能。 对用于每一个线程, 在它的run()方法被调用前，
+func函数将会被传递到sys.settrace()
+
+setprofile(func)
+为所有从threading模块开始的线程设置一个profile函数。  对于每个线程，在它的 run()方法调用前，func将会传给sys.setprofile()
+
+
+stack_size([size])
+返回创建新线程时所用的线程堆栈大小。
+
+
+本模块还定义了如下常量：
+TIMEOUT_MAX
+用于阻塞方法的超时参数的最大值。 指定一个大于此值的超时值将会抛出一个OverflowError错误。
+
+
+
+本模块定义了若干类，下面是详细描述：
+本模块的设计是松散地基于Java的线程模型。相对于， Java使用锁和条件变量作为每个对象的基本行为，在Python中，它们是单独的对象。 Python中的Thread类支持
+
+
+1.1 Thread-Local Data (线程本地数据)
+线程-本地数据是线程指定数据。为管理Thead-Local数据，只需要创建一个local (或子类)的实例，并在其上存储属性即可：
+mydata = threading.local()
+mydata.x = 1
+
+对于不同的线程，实例的值是不同的。
+
+类threading.local
+代表Thread-local数据的类
+更多详细和扩展的实例，参考_threading_local模块的文档说明。
+
+1.2 Thread对象
+Thread类表示运行在分开线程中的活动。 这里有两种方法指定活动： 通过传递一个可被调用的对象给构造器，或者在子类中重写run（）方法。 在子类中，其他方法（除了构造器）不应该被重载。换句话说，仅需在类中重载__init__（）和run()方法。
+
+
+一旦一个线程对象创建了，它的活动必须通过调用线程的start()方法来开始。 这将调用run()方法。
+一旦线程的活动已经开始，线程被认为是“活着的”。当它的run()方法被终止，它停止了存活 -- 一般来说， 或者通过抛出一个不能处理的异常。is_alive()方法用于测试线程是否是活着的。
+
+
+
+其他线程可以调用线程的join()方法。这将阻止主叫线程直到那些调用join()方法的线程被终止。
+
+线程有名字。这个名字可以被传递给构造器，可以通过name属性进行读取或更改。
+
+一个线程可以被标示为“守护线程”

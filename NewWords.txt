@@ -1,0 +1,4 @@
+abruptly adv. 突然地；莽撞地；陡峭地；不连贯地
+significance n. 重要性；意义
+
+daemon n. 半神半人的精灵；守护神；恶魔；[计]守护进程=demon.
